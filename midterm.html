@@ -1,0 +1,239 @@
+<html>
+
+	<head>
+		<title>Midterm</title>
+	<style type="text/css">
+	
+	body { 
+	color: lightBlue; 
+	background: black; 
+	}
+	<!--
+	#map {
+		width: 400px;
+		height: 300px;
+		margin: 0 auto;
+		margin-bottom: 50px;
+		}
+	
+	p.ridge {
+		border-style: ridge;
+		border-color: blue;
+		}	
+	-->
+	</style></head>
+	<body>
+		<h1>Midterm Writeup!</h1>
+		
+		<!-- Add a Google Map to your writeup that has the following characteristics (34 pts total):
+			• Based on the Satellite base map (10 pts)
+			• Centered at 36.060574,-107.961692 (5 pts)
+			• 400 px wide by 300 px high (5 pts)
+			• Zoom level 18 (5 pts)
+			• With a single marker positioned at the center point (5 pts)
+			• With an InfoWindow (with content of your choice) that is displayed when the user clicks on it (4
+			pts) -->
+		<h2>Question 1:</h2>
+		
+		<p class="ridge"; div id="map"></div></p>
+		
+		<h2> Question 2: What combination of OGC Service and Request (e.g. SERVICE=WMS&REQUEST=GetFeatureInfo)
+			would you use to perform the following?</h2>
+		
+		<!--
+		What combination of OGC Service and Request (e.g. SERVICE=WMS&REQUEST=GetFeatureInfo)
+			would you use to perform the following? (3 pts each)
+			a. Determine the spatial extent of an available layer from a Web Map Service.
+			b. Obtain a list of coverages from a Web Coverage service.
+			c. Determine what file formats are supported by a Web Feature Service for the delivery of available
+			data types (i.e. layers)
+			d. Retrieve a map image from a Web Map Service
+			e. Retrieve data from an available coverage from a Web Coverage Service
+			-->
+			<ol type="1">
+			<li>Determine the spatial extent of an available layer from a Web Map Service:<br>
+				<b>Answer: SERVICE=WMS&REQUEST=GetMap</b></li>
+			<li>Obtain a list of coverages from a Web Coverage service: <br> 
+			<b>Answer: SERVICE=WCS&REQUEST=DescribeCoverage </b>
+			</li>
+			<li>Determine what file formats are supported by a Web Feature Service for the delivery of available
+			data types (i.e. layers): <br> 
+			<b>Answer:SERVICE=WFS&REQUEST=GetCapabilities </b>
+			<li>Retrieve a map image from a Web Map Service<br> 
+			<b>Answer: SERVICE=WFS&REQUEST=GetMap</b>
+			<li>Retrieve data from an available coverage from a Web Coverage Service<br> 
+			<b>Answer: SERVICE=WCS&REQUEST=GetCoverage </b>
+			
+			</ol>
+			
+		<h2> Question 3: Perform the following WMS GetCapabilities request (file:///C:/Users/Guinness/AppData/Local/Temp/wms-1) and answer the following questions </h2>	
+		
+		<!---
+		Perform the following WMS GetCapabilities request (file:///C:/Users/Guinness/AppData/Local/Temp/wms-1) and answer the following questions (3 pts
+			each)
+			a. What is the name of the service?
+			b. What file formats are supported by the GetMap request?
+			c. What are the names of three of the layers included in the service?
+		-->
+		<ol type="1">
+			<li>What is the name of the service?<br>
+				<b>Answer: OGC:WMS</b></li>
+			<li>What file formats are supported by the GetMap request? <br> 
+			<b>Answer: image/png, image/jpeg </b>
+			</li>
+			<li>What are the names of three of the layers included in the service?<br> 
+			<b>Answer: MOD14A1_E_FIRE, MOD14A1_D_FIRE, Aerosol Optical Thickness </b>
+			
+			</ol>
+		<h2> Question 4: Compose a GetMap request for the WMS referenced in the previous question that includes the following
+			characteristics. Include in your answer both the complete WMS GetMap request and the resulting
+			map image that is returned.</h2>
+		
+		<!--
+		
+		Compose a GetMap request for the WMS referenced in the previous question that includes the following
+			characteristics. Include in your answer both the complete WMS GetMap request and the resulting
+			map image that is returned. (15 pts)
+			• JPEG image format
+			• 1200 pixels wide (you will need to calculate the height based upon the aspect ratio of the bounding
+			box)
+			• Bounding Box (EPSG:4326): Min X = -128 East Longitude, Min Y = 21.5 North Latitude,
+			Max X = -62 East Longitude, Max Y = 54.5 North Latitude
+			• Layer to be mapped = “MOD_LSTD_CLIM_M”
+		-->
+		
+		<ol type="1s">
+			<li>Compose a GetMap request for the WMS referenced in the previous question that includes the following
+			characteristics. Include in your answer both the complete WMS GetMap request and the resulting
+			map image that is returned. (15 pts)
+			- JPEG image format<br>
+			<br>- 1200 pixels wide (you will need to calculate the height based upon the aspect ratio of the bounding
+			box)<br>
+			<br>- Bounding Box (EPSG:4326): Min X = -128 East Longitude, Min Y = 21.5 North Latitude,
+			Max X = -62 East Longitude, Max Y = 54.5 North Latitude<br>
+			<br>- Layer to be mapped = MOD_LSTD_CLIM_M<br>
+				<br><b>Answer: http://neowms.sci.gsfc.nasa.gov/wms/wms?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&BBOX=-128,21.5,-62,54.5&LAYERS=MOD_LSTD_CLIM_M&WIDTH=1200&HEIGHT=600&SRS=EPSG:4326&FORMAT=image/jpeg&STYLE</b></li>
+				<p>
+				<img src="returned_map_image.jpeg" alt="returned map image" style="width:1200px;height:600px;">
+				</p>
+				</ol>
+		
+		<h2> Question 5: From the XML GetCapabilities returned by the following WFS request (http://services.nationalmap.gov/arcgis/services/WFS/transportation/MapServer/WFSServer?request=GetCapabilities&service=WFS) answer the following
+			questions</h2>
+		
+		<!--
+		
+		From the XML GetCapabilities returned by the following WFS request (http://services.nationalmap.gov/arcgis/services/WFS/transportation/MapServer/WFSServer?request=GetCapabilities&service=WFS) answer the following
+			questions (3 pts each)
+			a. What is the title for this service?
+			b. What file format(s) are supported by this service’s GetFeature request?
+			c. What is the DefaultSRS or the FeatureType named “WFS_transportation:Interstate”?
+			d. What is the WGS84BoundingBox of the FeatureType named “WFS_transportation:Interstate”?
+		
+		-->
+		<ol type="1">
+			<li>What is the title for this service?<br>
+				<b>Answer: WFS_transportation </b></li>
+			<li>What file format(s) are supported by this service’s GetFeature request?<br> 
+			<b>Answer: text/xml with a gml subType </b>
+			</li>
+			<li>What is the DefaultSRS or the FeatureType named “WFS_transportation:Interstate”?<br> 
+			<b>Answer: EPSG:6.9:4326 </b>
+			<li>What is the WGS84BoundingBox of the FeatureType named “WFS_transportation:Interstate”?<br> 
+			<b>Answer: Upper Corner: -159.77940999999993 19.05809000000005, Lower Corner: -66.979666999999949 65.825252000000035</b>
+		
+	
+		<h2> Question 6: From the XML GetCapabilities returned by the following WCS request (Link3) answer the following
+			questions</h2>
+		
+		<!--
+		
+		From the XML GetCapabilities returned by the following WCS request (Link3) answer the following
+			questions (3 pts each)
+			a. What is the description of the v coverage?
+			b. How many coverages are available from this service?
+		
+		-->
+		
+		<ol type="1">
+			<li>What is the description of the v coverage?<br>
+				<b>Answer: "v m s-1 true surface_northward_sea_water_velocity" </b></li>
+			<li>How many coverages are available from this service?<br> 
+			<b>Answer: Four coverages total: v, u, DOPy, DOPx </b>
+			
+			</ol>
+		
+		<h2> Question 7: Formulate a complete DescribeCoverage request for the v coverage for the WCS service referenced in
+			the previous question and provide a link in your writeup for that request </h2>
+		
+		<!--
+		
+		Formulate a complete DescribeCoverage request for the v coverage for the WCS service referenced in
+			the previous question and provide a link in your writeup for that request (i.e. I should be able to click
+			the link and get the XML returned in response to your well formed request).
+		
+		-->
+				<ol type="1">
+			<li>DescribeCoverage Request<br>
+				<b>Answer: <a href="http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_uswc_500m?request=DescribeCoverage&amp;version=1.0.0&amp;service=WCS&amp;LAYERS=v&amp;STYLES=">
+	http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_uswc_500m?request=DescribeCoverage&amp;version=1.0.0&amp;service=WCS&amp;LAYERS=v&amp;STYLES=</a> </b></li>
+		<h2> Question 8: From the returned XML document from the DescribeCoverage request in the previous question answer
+			the following questions.  </h2>
+		
+		<!--
+		
+		From the returned XML document from the DescribeCoverage request in the previous question answer
+			the following questions. (3 pts each)
+			a. What is the spatial domain for the ‘v‘ coverage?
+			b. What file formats are available for ‘v‘ data delivered by this service?
+			c. What SRS(s) are supported by this service for requested data delivery?
+		
+		-->
+		
+		<ol type="1">
+			<li> What is the spatial domain for the ‘v‘ coverage?<br>
+				<b>Answer:-122.59346771240234, 37.45548629760742, -122.0468978881836, 38.13872528076172</b></li>
+			<li>What file formats are available for ‘v‘ data delivered by this service?<br> 
+			<b>Answer: GeoTIFF, GeoTIFF_Float, NetCDF3 </b>
+			</li>
+			<li>What SRS(s) are supported by this service for requested data delivery?<br> 
+			<b>Answer: OGC:1.3:CRS84 </b>
+	
+	
+		 <script type="text/javascript"
+
+		 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaaah7msp1UOQNAcLa8c-SSe8Xsl0qJzU&callback=initMap"
+		 async defer></script>
+
+		<script>		
+		
+		var gMapAPIKey = 'AIzaSyCaaah7msp1UOQNAcLa8c-SSe8Xsl0qJzU';
+		function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 36.060574, lng: -107.961692},
+          zoom: 18,
+		  mapTypeId: google.maps.MapTypeId.SATELLITE,
+		  
+        });
+		
+		marker1 = new google.maps.Marker({
+			position: {lat: 36.060574, lng: -107.961692},
+			map: map,
+			title: 'Chaco Canyon'
+			});
+			
+			var marker1InfoContent = '<div class="infoBox">' +
+				'<p>Stop fracking in Chaco!</p>' +
+				'</div>'
+			var marker1InfoWindow = new google.maps.InfoWindow({
+				content: marker1InfoContent
+				});
+			google.maps.event.addListener(marker1, 'click', function() {
+				marker1InfoWindow.open(map,marker1);
+				});
+		
+		} 
+		
+		</script>
+	</body>
+</html>
